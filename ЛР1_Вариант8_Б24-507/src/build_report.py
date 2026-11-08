@@ -156,10 +156,37 @@ for section in doc.sections:
 doc.save(ROOT/'report.docx')
 
 # ---------------- PDF via ReportLab Platypus ----------------
-font_regular='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
-font_bold='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
-pdfmetrics.registerFont(TTFont('DV',font_regular)); pdfmetrics.registerFont(TTFont('DV-Bold',font_bold))
-ss=getSampleStyleSheet()
+from pathlib import Path
+import matplotlib
+
+# Поиск шрифтов для Windows и Linux
+font_paths = [
+    (
+        Path("C:/Windows/Fonts/arial.ttf"),
+        Path("C:/Windows/Fonts/arialbd.ttf")
+    ),
+    (
+        Path(matplotlib.get_data_path()) / "fonts/ttf/DejaVuSans.ttf",
+        Path(matplotlib.get_data_path()) / "fonts/ttf/DejaVuSans-Bold.ttf"
+    ),
+    (
+        Path("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"),
+        Path("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf")
+    )
+]
+
+for regular, bold in font_paths:
+    if regular.exists() and bold.exists():
+        font_regular = str(regular)
+        font_bold = str(bold)
+        break
+else:
+    raise FileNotFoundError("Не найдены подходящие шрифты")
+
+pdfmetrics.registerFont(TTFont("DV", font_regular))
+pdfmetrics.registerFont(TTFont("DV-Bold", font_bold))
+
+ss = getSampleStyleSheet()
 ss.add(ParagraphStyle(name='BodyRu', parent=ss['BodyText'], fontName='DV', fontSize=8.2, leading=11, spaceAfter=5))
 ss.add(ParagraphStyle(name='TitleRu', parent=ss['Title'], fontName='DV-Bold', fontSize=17, leading=21, alignment=TA_CENTER, textColor=colors.HexColor('#1F4E79'), spaceAfter=8))
 ss.add(ParagraphStyle(name='SubRu', parent=ss['BodyText'], fontName='DV-Bold', fontSize=9, leading=12, alignment=TA_CENTER, spaceAfter=12))
