@@ -1,0 +1,4 @@
+﻿scenario,status,total_output,change_vs_base,message
+Базовый,optimal,75.76885532729527,0.0,Optimization terminated successfully. (HiGHS Status 7: Optimal)
+Дефицитный: запас материала 2 −20%,optimal,69.28733971304938,-6.481515614245907,Optimization terminated successfully. (HiGHS Status 7: Optimal)
+"Стрессовый: время линий −20%, все материалы −20%",optimal,61.77238110651299,-13.996474220782297,Optimization terminated successfully. (HiGHS Status 7: Optimal)

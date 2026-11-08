@@ -1,0 +1,26 @@
+ЛР №1, вариант 8, группа Б24-507
+Seed: 10013
+Python: 3.13.5
+NumPy: 2.3.5
+SciPy: 1.17.0
+HiGHS: 1.8.0
+Solver interface: scipy.optimize.linprog
+HiGHS method: highs-ds (dual simplex)
+HiGHS options: {'presolve': True}
+Objective: maximize weighted total production volume; all product weights = 1
+HiGHS status: Optimization terminated successfully. (HiGHS Status 7: Optimal)
+HiGHS iterations: 10
+Objective value: 75.7688553273
+Independent nonnegativity: True
+Independent constraints: True
+Independent max violation: 1.7763568394e-15
+Independent objective: 75.7688553273
+Positive variables in selected optimum: 7/48
+Zero variables in selected optimum: 41/48
+Alternative optimal plan exists: True; objective=75.7688553273
+Shadow-price local prediction for material 2 20% cut: loss=5.3634815349
+Actual loss in deficit scenario: 6.4815156142
+Scenario results:
+  Базовый: optimal; objective=75.76885532729527
+  Дефицитный: запас материала 2 −20%: optimal; objective=69.28733971304938
+  Стрессовый: время линий −20%, все материалы −20%: optimal; objective=61.77238110651299
